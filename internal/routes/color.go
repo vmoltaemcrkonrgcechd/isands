@@ -7,22 +7,22 @@ import (
 	"net/http"
 )
 
-type categoryRoutes struct {
-	uc *usecase.CategoryUseCase
+type colorRoutes struct {
+	uc *usecase.ColorUseCase
 }
 
-func withCategoryRoutes(app *fiber.App, uc *usecase.CategoryUseCase) {
-	r := categoryRoutes{uc: uc}
-	app.Post("/category", r.create)
-	app.Get("/category", r.read)
-	app.Patch("/category/:id", r.update)
-	app.Delete("/category/:id", r.delete)
+func withColorRoutes(app *fiber.App, uc *usecase.ColorUseCase) {
+	r := colorRoutes{uc: uc}
+	app.Post("/color", r.create)
+	app.Get("/color", r.read)
+	app.Patch("/color/:id", r.update)
+	app.Delete("/color/:id", r.delete)
 }
 
-//	@tags	категория
-//	@param	dto	body	entity.DictionaryEntryDTO	true	"категория"
-//	@router	/category [post]
-func (r categoryRoutes) create(ctx *fiber.Ctx) error {
+//	@tags	цвет
+//	@param	dto	body	entity.DictionaryEntryDTO	true	"цвет"
+//	@router	/color [post]
+func (r colorRoutes) create(ctx *fiber.Ctx) error {
 	var dto entity.DictionaryEntryDTO
 
 	err := ctx.BodyParser(&dto)
@@ -40,10 +40,10 @@ func (r categoryRoutes) create(ctx *fiber.Ctx) error {
 	return ctx.Status(http.StatusCreated).SendString(id)
 }
 
-//	@tags		категория
+//	@tags		цвет
 //	@success	200	{object}	entity.Dictionary
-//	@router		/category [get]
-func (r categoryRoutes) read(ctx *fiber.Ctx) error {
+//	@router		/color [get]
+func (r colorRoutes) read(ctx *fiber.Ctx) error {
 	dictionary, err := r.uc.Read()
 	if err != nil {
 		return err
@@ -52,11 +52,11 @@ func (r categoryRoutes) read(ctx *fiber.Ctx) error {
 	return ctx.JSON(dictionary)
 }
 
-//	@tags	категория
-//	@param	dto	body	entity.DictionaryEntryDTO	true	"категория"
+//	@tags	цвет
+//	@param	dto	body	entity.DictionaryEntryDTO	true	"цвет"
 //	@param	id	path	string						true	"идентификатор"
-//	@router	/category/{id} [patch]
-func (r categoryRoutes) update(ctx *fiber.Ctx) error {
+//	@router	/color/{id} [patch]
+func (r colorRoutes) update(ctx *fiber.Ctx) error {
 	var dto entity.DictionaryEntryDTO
 
 	err := ctx.BodyParser(&dto)
@@ -74,9 +74,9 @@ func (r categoryRoutes) update(ctx *fiber.Ctx) error {
 	return ctx.SendString(id)
 }
 
-//	@tags	категория
+//	@tags	цвет
 //	@param	id	path	string	true	"идентификатор"
-//	@router	/category/{id} [delete]
-func (r categoryRoutes) delete(ctx *fiber.Ctx) error {
+//	@router	/color/{id} [delete]
+func (r colorRoutes) delete(ctx *fiber.Ctx) error {
 	return r.uc.Delete(ctx.Params("id"))
 }

@@ -91,6 +91,82 @@ const docTemplate = `{
                 "responses": {}
             }
         },
+        "/color": {
+            "get": {
+                "tags": [
+                    "цвет"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/entity.DictionaryEntry"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "цвет"
+                ],
+                "parameters": [
+                    {
+                        "description": "цвет",
+                        "name": "dto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.DictionaryEntryDTO"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/color/{id}": {
+            "delete": {
+                "tags": [
+                    "цвет"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "идентификатор",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "patch": {
+                "tags": [
+                    "цвет"
+                ],
+                "parameters": [
+                    {
+                        "description": "цвет",
+                        "name": "dto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.DictionaryEntryDTO"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "идентификатор",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
         "/country": {
             "get": {
                 "tags": [

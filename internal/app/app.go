@@ -23,6 +23,7 @@ func Run(cfg *config.Config) error {
 	routes.WithRouter(app,
 		usecase.NewCountryUseCase(repo.NewCountryRepo(pg)),
 		usecase.NewCategoryUseCase(repo.NewCategoryRepo(pg)),
+		usecase.NewColorUseCase(repo.NewColorRepo(pg)),
 	)
 
 	return app.Listen(cfg.HTTPAddr)
