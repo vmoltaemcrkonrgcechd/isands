@@ -32,26 +32,26 @@ create table product(
                         product_id uuid default gen_random_uuid(),
                         name varchar(40) not null,
                         price real not null,
-                        country_id uuid,
-                        supplier_id uuid,
-                        category_id uuid,
-                        color_id uuid,
+                        country_id uuid not null,
+                        supplier_id uuid not null,
+                        category_id uuid not null,
+                        color_id uuid not null,
                         online boolean default false,
                         installment_plan boolean default false,
                         in_stock boolean default false,
                         primary key (product_id),
                         foreign key (country_id)
                             references country(country_id)
-                            on delete set null,
+                            on delete cascade,
                         foreign key (supplier_id)
                             references supplier(supplier_id)
-                            on delete set null,
+                            on delete cascade,
                         foreign key (category_id)
                             references category(category_id)
-                            on delete set null,
+                            on delete cascade,
                         foreign key (color_id)
                             references color(color_id)
-                            on delete set null
+                            on delete cascade
 );
 
 create table detail(
