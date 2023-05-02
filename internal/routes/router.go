@@ -7,8 +7,12 @@ import (
 	"isands/internal/usecase"
 )
 
-func WithRouter(app *fiber.App, countryUseCase *usecase.CountryUseCase) {
+func WithRouter(app *fiber.App,
+	countryUseCase *usecase.CountryUseCase,
+	categoryUseCase *usecase.CategoryUseCase) {
+
 	app.Get("/swagger-ui/*", swagger.New(swagger.ConfigDefault))
 
 	withCountryRoutes(app, countryUseCase)
+	withCategoryRoutes(app, categoryUseCase)
 }

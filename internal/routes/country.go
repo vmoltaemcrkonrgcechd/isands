@@ -19,9 +19,9 @@ func withCountryRoutes(app *fiber.App, uc *usecase.CountryUseCase) {
 	app.Delete("/country/:id", r.delete)
 }
 
-// @tags	страна
-// @param	dto	body	entity.DictionaryEntryDTO	true	"страна"
-// @router	/country [post]
+//	@tags	страна
+//	@param	dto	body	entity.DictionaryEntryDTO	true	"страна"
+//	@router	/country [post]
 func (r countryRoutes) create(ctx *fiber.Ctx) error {
 	var dto entity.DictionaryEntryDTO
 
@@ -40,9 +40,9 @@ func (r countryRoutes) create(ctx *fiber.Ctx) error {
 	return ctx.Status(http.StatusCreated).SendString(id)
 }
 
-// @tags		страна
-// @success	200	{object}	entity.Dictionary
-// @router		/country [get]
+//	@tags		страна
+//	@success	200	{object}	entity.Dictionary
+//	@router		/country [get]
 func (r countryRoutes) read(ctx *fiber.Ctx) error {
 	dictionary, err := r.uc.Read()
 	if err != nil {
@@ -52,10 +52,10 @@ func (r countryRoutes) read(ctx *fiber.Ctx) error {
 	return ctx.JSON(dictionary)
 }
 
-// @tags	страна
-// @param	dto	body	entity.DictionaryEntryDTO	true	"страна"
-// @param	id	path	string						true	"идентификатор"
-// @router	/country/{id} [patch]
+//	@tags	страна
+//	@param	dto	body	entity.DictionaryEntryDTO	true	"страна"
+//	@param	id	path	string						true	"идентификатор"
+//	@router	/country/{id} [patch]
 func (r countryRoutes) update(ctx *fiber.Ctx) error {
 	var dto entity.DictionaryEntryDTO
 
@@ -74,9 +74,9 @@ func (r countryRoutes) update(ctx *fiber.Ctx) error {
 	return ctx.SendString(id)
 }
 
-// @tags	страна
-// @param	id	path	string	true	"идентификатор"
-// @router	/country/{id} [delete]
+//	@tags	страна
+//	@param	id	path	string	true	"идентификатор"
+//	@router	/country/{id} [delete]
 func (r countryRoutes) delete(ctx *fiber.Ctx) error {
 	return r.uc.Delete(ctx.Params("id"))
 }

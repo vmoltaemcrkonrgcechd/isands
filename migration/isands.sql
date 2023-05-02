@@ -55,19 +55,19 @@ create table product(
 );
 
 create table detail(
-    detail_id uuid default gen_random_uuid(),
-    name varchar(40) not null,
-    primary key (detail_id)
+                       detail_id uuid default gen_random_uuid(),
+                       name varchar(40) not null,
+                       primary key (detail_id)
 );
 
 create table product_detail(
-    product_id uuid,
-    detail_id uuid,
-    value text not null,
-    foreign key (product_id)
-        references product(product_id)
-        on delete cascade,
-    foreign key (detail_id)
-        references detail(detail_id)
-        on delete cascade
+                               product_id uuid,
+                               detail_id uuid,
+                               value text not null,
+                               foreign key (product_id)
+                                   references product(product_id)
+                                   on delete cascade,
+                               foreign key (detail_id)
+                                   references detail(detail_id)
+                                   on delete cascade
 );
