@@ -242,6 +242,82 @@ const docTemplate = `{
                 ],
                 "responses": {}
             }
+        },
+        "/supplier": {
+            "get": {
+                "tags": [
+                    "поставщик"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/entity.DictionaryEntry"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "поставщик"
+                ],
+                "parameters": [
+                    {
+                        "description": "поставщик",
+                        "name": "dto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.DictionaryEntryDTO"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/supplier/{id}": {
+            "delete": {
+                "tags": [
+                    "поставщик"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "идентификатор",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "patch": {
+                "tags": [
+                    "поставщик"
+                ],
+                "parameters": [
+                    {
+                        "description": "поставщик",
+                        "name": "dto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.DictionaryEntryDTO"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "идентификатор",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
         }
     },
     "definitions": {

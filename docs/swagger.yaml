@@ -161,4 +161,53 @@ paths:
       responses: {}
       tags:
       - страна
+  /supplier:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.DictionaryEntry'
+            type: array
+      tags:
+      - поставщик
+    post:
+      parameters:
+      - description: поставщик
+        in: body
+        name: dto
+        required: true
+        schema:
+          $ref: '#/definitions/entity.DictionaryEntryDTO'
+      responses: {}
+      tags:
+      - поставщик
+  /supplier/{id}:
+    delete:
+      parameters:
+      - description: идентификатор
+        in: path
+        name: id
+        required: true
+        type: string
+      responses: {}
+      tags:
+      - поставщик
+    patch:
+      parameters:
+      - description: поставщик
+        in: body
+        name: dto
+        required: true
+        schema:
+          $ref: '#/definitions/entity.DictionaryEntryDTO'
+      - description: идентификатор
+        in: path
+        name: id
+        required: true
+        type: string
+      responses: {}
+      tags:
+      - поставщик
 swagger: "2.0"

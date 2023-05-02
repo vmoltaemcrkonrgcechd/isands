@@ -10,11 +10,13 @@ import (
 func WithRouter(app *fiber.App,
 	countryUseCase *usecase.CountryUseCase,
 	categoryUseCase *usecase.CategoryUseCase,
-	colorUseCase *usecase.ColorUseCase) {
+	colorUseCase *usecase.ColorUseCase,
+	supplierUseCase *usecase.SupplierUseCase) {
 
 	app.Get("/swagger-ui/*", swagger.New(swagger.ConfigDefault))
 
 	withCountryRoutes(app, countryUseCase)
 	withCategoryRoutes(app, categoryUseCase)
 	withColorRoutes(app, colorUseCase)
+	withSupplierRoutes(app, supplierUseCase)
 }

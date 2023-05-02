@@ -75,7 +75,7 @@ func (r *CategoryRepo) Delete(id string) error {
 		Exec(); err != nil {
 		log.Println(err)
 		return fiber.NewError(http.StatusInternalServerError,
-			"произошла ошибка при удалении категории.")
+			"произошла ошибка при удалении категории")
 	}
 
 	return nil
