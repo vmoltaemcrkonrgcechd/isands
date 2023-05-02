@@ -5,6 +5,8 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"isands/config"
 	"isands/internal/routes"
+	"isands/internal/usecase"
+	"isands/internal/usecase/repo"
 	"isands/pkg/postgres"
 )
 
@@ -13,12 +15,13 @@ func Run(cfg *config.Config) error {
 
 	app.Use(cors.New(cors.Config{AllowOrigins: "http://localhost:8080"}))
 
-	_, err := postgres.New(cfg)
+	pg, err := postgres.New(cfg)
 	if err != nil {
 		return err
 	}
 
-	routes.WithRouter(app)
+	routes.WithRouter(app,
+		usecase.NewCountryUseCase(repo.NewCountryRepo(pg)))
 
 	return app.Listen(cfg.HTTPAddr)
 }

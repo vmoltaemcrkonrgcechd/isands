@@ -17,7 +17,6 @@ func New(cfg *config.Config) (*Postgres, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer db.Close()
 
 	if err = db.Ping(); err != nil {
 		return nil, err
