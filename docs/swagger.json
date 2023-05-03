@@ -232,6 +232,41 @@
                 "responses": {}
             }
         },
+        "/detail": {
+            "get": {
+                "tags": [
+                    "деталь"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/entity.DictionaryEntry"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "деталь"
+                ],
+                "parameters": [
+                    {
+                        "description": "деталь",
+                        "name": "dto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.DictionaryEntryDTO"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
         "/product": {
             "get": {
                 "tags": [
@@ -242,6 +277,30 @@
                         "type": "string",
                         "description": "название продукта",
                         "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "идентификатор страны, разделенный запятыми",
+                        "name": "countryID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "идентификатор поставщика, разделенный запятыми",
+                        "name": "supplierID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "идентификатор категории, разделенный запятыми",
+                        "name": "categoryID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "идентификатор цвета, разделенный запятыми",
+                        "name": "colorID",
                         "in": "query"
                     },
                     {

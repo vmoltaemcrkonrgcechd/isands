@@ -26,6 +26,7 @@ func Run(cfg *config.Config) error {
 		usecase.NewColorUseCase(repo.NewColorRepo(pg)),
 		usecase.NewSupplierUseCase(repo.NewSupplierRepo(pg)),
 		usecase.NewProductUseCase(repo.NewProductRepo(pg)),
+		usecase.NewDetailUseCase(repo.NewDetailRepo(pg)),
 	)
 
 	return app.Listen(cfg.HTTPAddr)

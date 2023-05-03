@@ -227,12 +227,50 @@ paths:
       responses: {}
       tags:
       - страна
+  /detail:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.DictionaryEntry'
+            type: array
+      tags:
+      - деталь
+    post:
+      parameters:
+      - description: деталь
+        in: body
+        name: dto
+        required: true
+        schema:
+          $ref: '#/definitions/entity.DictionaryEntryDTO'
+      responses: {}
+      tags:
+      - деталь
   /product:
     get:
       parameters:
       - description: название продукта
         in: query
         name: name
+        type: string
+      - description: идентификатор страны, разделенный запятыми
+        in: query
+        name: countryID
+        type: string
+      - description: идентификатор поставщика, разделенный запятыми
+        in: query
+        name: supplierID
+        type: string
+      - description: идентификатор категории, разделенный запятыми
+        in: query
+        name: categoryID
+        type: string
+      - description: идентификатор цвета, разделенный запятыми
+        in: query
+        name: colorID
         type: string
       - description: 'сортировка: name,price: name,desc/name,asc'
         in: query

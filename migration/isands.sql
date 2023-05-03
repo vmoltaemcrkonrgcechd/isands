@@ -1,5 +1,3 @@
-drop database if exists isands;
-
 create database isands;
 
 \connect isands
@@ -101,3 +99,21 @@ values
 insert into detail (detail_id, name)
 values
     ('321e9e04-e966-11ed-a05b-0242ac120003' , 'Количество страниц');
+
+insert into product (product_id, name, price, country_id, supplier_id, category_id, color_id)
+values
+    ('e48ed25a-e972-11ed-a05b-0242ac120003', 'Сланцы', 7890, 'bbf2eece-e965-11ed-a05b-0242ac120003',
+     'fcbc4450-e965-11ed-a05b-0242ac120003', 'ad9fcad6-e965-11ed-a05b-0242ac120003',
+     'd7c3e1c6-e965-11ed-a05b-0242ac120003'),
+    ('e48ed61a-e972-11ed-a05b-0242ac120003', 'Кеды', 3299, 'bbf2e636-e965-11ed-a05b-0242ac120003',
+     'fcbc4842-e965-11ed-a05b-0242ac120003', 'ad9fce96-e965-11ed-a05b-0242ac120003',
+     'd7c3e1c6-e965-11ed-a05b-0242ac120003'),
+    ('e48ed7dc-e972-11ed-a05b-0242ac120003', 'Футболка', 5090, 'bbf2e636-e965-11ed-a05b-0242ac120003',
+     'fcbc4a68-e965-11ed-a05b-0242ac120003', 'ad9fce96-e965-11ed-a05b-0242ac120003',
+     'd7c3e1c6-e965-11ed-a05b-0242ac120003');
+
+insert into product_detail (product_id, detail_id, value)
+values
+    ('e48ed25a-e972-11ed-a05b-0242ac120003', '321e9e04-e966-11ed-a05b-0242ac120003', '1725'),
+    ('e48ed61a-e972-11ed-a05b-0242ac120003', '321e9e04-e966-11ed-a05b-0242ac120003', '5910'),
+    ('e48ed7dc-e972-11ed-a05b-0242ac120003', '321e9e04-e966-11ed-a05b-0242ac120003', '95');

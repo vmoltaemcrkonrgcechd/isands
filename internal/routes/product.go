@@ -39,9 +39,13 @@ func (r productRoutes) create(ctx *fiber.Ctx) error {
 }
 
 //	@tags		продукт
-//	@success	200		{array}	entity.Product
-//	@param		name	query	string	false	"название продукта"
-//	@param		orderBy	query	string	false	"сортировка: name,price: name,desc/name,asc"
+//	@success	200			{array}	entity.Product
+//	@param		name		query	string	false	"название продукта"
+//	@param		countryID	query	string	false	"идентификатор страны, разделенный запятыми"
+//	@param		supplierID	query	string	false	"идентификатор поставщика, разделенный запятыми"
+//	@param		categoryID	query	string	false	"идентификатор категории, разделенный запятыми"
+//	@param		colorID		query	string	false	"идентификатор цвета, разделенный запятыми"
+//	@param		orderBy		query	string	false	"сортировка: name,price: name,desc/name,asc"
 //	@router		/product [get]
 func (r productRoutes) read(ctx *fiber.Ctx) error {
 	var qp entity.ProductQP

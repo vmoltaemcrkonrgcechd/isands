@@ -43,8 +43,12 @@ type Detail struct {
 }
 
 type ProductQP struct {
-	Name    string   `json:"name"`
-	OrderBy []string `query:"orderBy"`
+	CountryID  []string `query:"countryID"`
+	SupplierID []string `query:"supplierID"`
+	CategoryID []string `query:"categoryID"`
+	ColorID    []string `query:"colorID"`
+	Name       string   `query:"name"`
+	OrderBy    []string `query:"orderBy"`
 }
 
 func (qp ProductQP) Use(q sq.SelectBuilder) sq.SelectBuilder {
@@ -54,6 +58,22 @@ func (qp ProductQP) Use(q sq.SelectBuilder) sq.SelectBuilder {
 
 	if len(qp.Name) != 0 {
 		q = q.Where("lower(product.name) like lower('%' || ? || '%')", qp.Name)
+	}
+
+	if len(qp.CountryID) != 0 {
+		q = q.Where(sq.Eq{"country_id": qp.CountryID})
+	}
+
+	if len(qp.SupplierID) != 0 {
+		q = q.Where(sq.Eq{"supplier_id": qp.SupplierID})
+	}
+
+	if len(qp.CategoryID) != 0 {
+		q = q.Where(sq.Eq{"category_id": qp.CategoryID})
+	}
+
+	if len(qp.ColorID) != 0 {
+		q = q.Where(sq.Eq{"color_id": qp.ColorID})
 	}
 
 	return q
