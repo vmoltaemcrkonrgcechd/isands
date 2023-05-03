@@ -243,6 +243,55 @@ const docTemplate = `{
                 "responses": {}
             }
         },
+        "/product": {
+            "get": {
+                "tags": [
+                    "продукт"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "название продукта",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "сортировка: name,price: name,desc/name,asc",
+                        "name": "orderBy",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/entity.Product"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "продукт"
+                ],
+                "parameters": [
+                    {
+                        "description": "продукт",
+                        "name": "dto",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.ProductDTO"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
         "/supplier": {
             "get": {
                 "tags": [
@@ -321,6 +370,28 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "entity.Detail": {
+            "type": "object",
+            "properties": {
+                "detailName": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "entity.DetailDTO": {
+            "type": "object",
+            "properties": {
+                "detailID": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
         "entity.DictionaryEntry": {
             "type": "object",
             "properties": {
@@ -336,6 +407,85 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "entity.Product": {
+            "type": "object",
+            "properties": {
+                "categoryName": {
+                    "type": "string"
+                },
+                "colorName": {
+                    "type": "string"
+                },
+                "countryName": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/entity.Detail"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "inStock": {
+                    "type": "boolean"
+                },
+                "installmentPlan": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "online": {
+                    "type": "boolean"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "supplierName": {
+                    "type": "string"
+                }
+            }
+        },
+        "entity.ProductDTO": {
+            "type": "object",
+            "properties": {
+                "categoryID": {
+                    "type": "string"
+                },
+                "colorID": {
+                    "type": "string"
+                },
+                "countryID": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/entity.DetailDTO"
+                    }
+                },
+                "inStock": {
+                    "type": "boolean"
+                },
+                "installmentPlan": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "online": {
+                    "type": "boolean"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "supplierID": {
                     "type": "string"
                 }
             }

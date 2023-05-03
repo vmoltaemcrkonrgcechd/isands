@@ -1,4 +1,18 @@
 definitions:
+  entity.Detail:
+    properties:
+      detailName:
+        type: string
+      value:
+        type: string
+    type: object
+  entity.DetailDTO:
+    properties:
+      detailID:
+        type: string
+      value:
+        type: string
+    type: object
   entity.DictionaryEntry:
     properties:
       id:
@@ -9,6 +23,58 @@ definitions:
   entity.DictionaryEntryDTO:
     properties:
       name:
+        type: string
+    type: object
+  entity.Product:
+    properties:
+      categoryName:
+        type: string
+      colorName:
+        type: string
+      countryName:
+        type: string
+      details:
+        items:
+          $ref: '#/definitions/entity.Detail'
+        type: array
+      id:
+        type: string
+      inStock:
+        type: boolean
+      installmentPlan:
+        type: boolean
+      name:
+        type: string
+      online:
+        type: boolean
+      price:
+        type: number
+      supplierName:
+        type: string
+    type: object
+  entity.ProductDTO:
+    properties:
+      categoryID:
+        type: string
+      colorID:
+        type: string
+      countryID:
+        type: string
+      details:
+        items:
+          $ref: '#/definitions/entity.DetailDTO'
+        type: array
+      inStock:
+        type: boolean
+      installmentPlan:
+        type: boolean
+      name:
+        type: string
+      online:
+        type: boolean
+      price:
+        type: number
+      supplierID:
         type: string
     type: object
 info:
@@ -161,6 +227,37 @@ paths:
       responses: {}
       tags:
       - страна
+  /product:
+    get:
+      parameters:
+      - description: название продукта
+        in: query
+        name: name
+        type: string
+      - description: 'сортировка: name,price: name,desc/name,asc'
+        in: query
+        name: orderBy
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Product'
+            type: array
+      tags:
+      - продукт
+    post:
+      parameters:
+      - description: продукт
+        in: body
+        name: dto
+        required: true
+        schema:
+          $ref: '#/definitions/entity.ProductDTO'
+      responses: {}
+      tags:
+      - продукт
   /supplier:
     get:
       responses:

@@ -4,6 +4,8 @@ create database isands;
 
 \connect isands
 
+SET client_encoding = 'UTF8';
+
 create table country(
                         country_id uuid default gen_random_uuid(),
                         name varchar(40) not null,
@@ -71,3 +73,31 @@ create table product_detail(
                                    references detail(detail_id)
                                    on delete cascade
 );
+
+insert into category (category_id, name)
+values
+    ('ad9fcad6-e965-11ed-a05b-0242ac120003' , 'Телевизоры'),
+    ('ad9fcd88-e965-11ed-a05b-0242ac120003' , 'Ноутбуки'),
+    ('ad9fce96-e965-11ed-a05b-0242ac120003' , 'Компьютеры');
+
+insert into country (country_id, name)
+values
+    ('bbf2e636-e965-11ed-a05b-0242ac120003' , 'Ботсвана'),
+    ('bbf2e8fc-e965-11ed-a05b-0242ac120003' , 'Бразилия'),
+    ('bbf2eece-e965-11ed-a05b-0242ac120003' , 'Бруней');
+
+insert into color (color_id, name)
+values
+    ('d7c3e1c6-e965-11ed-a05b-0242ac120003' , 'Абрикосовый'),
+    ('d7c3e4aa-e965-11ed-a05b-0242ac120003' , 'Тёмно‑бордовый'),
+    ('d7c3e5ea-e965-11ed-a05b-0242ac120003' , 'Агатовый серый');
+
+insert into supplier (supplier_id, name)
+values
+    ('fcbc4450-e965-11ed-a05b-0242ac120003' , 'Магнит'),
+    ('fcbc4842-e965-11ed-a05b-0242ac120003' , 'Дикси'),
+    ('fcbc4a68-e965-11ed-a05b-0242ac120003' , 'Лента');
+
+insert into detail (detail_id, name)
+values
+    ('321e9e04-e966-11ed-a05b-0242ac120003' , 'Количество страниц');
